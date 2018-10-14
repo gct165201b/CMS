@@ -141,7 +141,7 @@ if(isset($_GET['approve'])) {
 <?php
 
 
-// APPROVE COMMENTS
+//UN APPROVE COMMENTS
 
 
 
