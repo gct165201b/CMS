@@ -17,8 +17,21 @@
                 
                 
                 <?php
-                $query = "SELECT * FROM posts";
+                
+                // VIEWING ALL POSTS
+                
+                
+                $query = "SELECT * FROM posts ORDER BY post_id DESC";
                 $select_all_posts_query = mysqli_query($connection, $query);
+                
+                
+                // IF NO RESULT
+                
+                
+                if(mysqli_num_rows($select_all_posts_query) <= 0) {
+                    echo "<h1>No Posts</h1>";
+                }
+                
                 // get all the result
                 while($row = mysqli_fetch_assoc($select_all_posts_query)) {
                     $post_id = $row['post_id'];
@@ -33,10 +46,12 @@
                     
                     
                     
+<!--
                 <h1 class="page-header">
                 Page Heading
                 <small>Secondary Text</small>
                 </h1>
+-->
 
                 <!-- First Blog Post -->
                 <h2>

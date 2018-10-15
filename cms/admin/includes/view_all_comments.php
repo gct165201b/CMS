@@ -10,6 +10,7 @@
             <th>Date</th>
             <th>Approve</th>
             <th>Un-Approve</th>
+            <th>Edit</th>
             <th>Delete</th>
             
         </tr>
@@ -22,6 +23,9 @@
 
         <?php 
 
+        
+        
+        // VIEW COMMENTS
 
 
         $query = "SELECT * FROM comments";
@@ -44,28 +48,28 @@
             echo "<td>{$comment_id}</td>";
             echo "<td>{$comment_author}</td>";
             echo "<td>{$comment_content}</td>";
-            
-            
-            
-//            $query = "SELECT * FROM categories WHERE cat_id = {$post_cat}";
-//            $select_category = mysqli_query($connection, $query);
-//            if($row = mysqli_fetch_assoc($select_category)) {
-//                $cat_id = $row['cat_id'];
-//                $cat_title = $row['cat_title'];
-//                
-//                echo "<td>{$cat_title}</td>";
-//            }
-            
             echo "<td>{$comment_email}</td>";
             echo "<td>{$comment_status}</td>";
+            
+            
+            $query = "SELECT * FROM posts WHERE post_id = {$comment_post_id}";
+            $select_post = mysqli_query($connection, $query);
+            if($row = mysqli_fetch_assoc($select_post)) {
+//                $cat_id = $row['cat_id'];
+                $post_title = $row['post_title'];
+                
+                echo "<td>{$post_title}</td>";
+            }
+            
+            
             echo "<td>{$comment_date}</td>";
             
             
-            echo "<td><a href='posts.php?source=edit_post&p_id={$comment_id}'>Approve</a></td>";
-            echo "<td><a href='posts.php?delete={$comment_id}' class='btn btn-danger'>Unapprove</a></td>";
+            echo "<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";
+            echo "<td><a href='comments.php?unapprove={$comment_id}' class='btn btn-danger'>Unapprove</a></td>";
             
-            echo "<td><a href='posts.php?source=edit_post&p_id={$comment_id}'>Edit</a></td>";
-            echo "<td><a href='posts.php?delete={$comment_id}' class='btn btn-danger'>Delete</a></td>";
+            echo "<td><a href='comments.php?source=edit_post&p_id={$comment_id}'>Edit</a></td>";
+            echo "<td><a href='comments.php?delete={$comment_id}' class='btn btn-danger'>Delete</a></td>";
             echo "</tr>";
 
         }
@@ -92,19 +96,71 @@
 
 <?php
 
+// DELETE COMMENTS
 
 if(isset($_GET['delete'])) {
-    $the_post_id = $_GET['delete'];
+    $the_comment_id = $_GET['delete'];
     
-    $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
+    $query = "DELETE FROM comments WHERE comment_id = {$the_comment_id}";
     
-    $delete_post_query_result = mysqli_query($connection, $query);
+    $delete_comment_query_result = mysqli_query($connection, $query);
     
-    header("Location: posts.php");
+    header("Location: comments.php");
     
 }
 
-// CONTINUE FROM EDIT POSTS TUTORIAL
+?>
+
+
+
+<?php
+
+
+// APPROVE COMMENTS
+
+
+
+if(isset($_GET['approve'])) {
+    $the_comment_id = $_GET['approve'];
+    $query = "UPDATE comments SET ";
+    $query .= "comment_status='approved' ";
+    $query .= "WHERE comment_id={$the_comment_id}";
+    
+    
+    $approve_comment_query_result = mysqli_query($connection, $query);
+    
+    
+    header("Location: comments.php");
+}
 
 
 ?>
+
+
+
+<?php
+
+
+//UN APPROVE COMMENTS
+
+
+
+if(isset($_GET['unapprove'])) {
+    $the_comment_id = $_GET['unapprove'];
+    $query = "UPDATE comments SET ";
+    $query .= "comment_status='unapproved' ";
+    $query .= "WHERE comment_id={$the_comment_id}";
+    
+    
+    $approve_comment_query_result = mysqli_query($connection, $query);
+    
+    
+    header("Location: comments.php");
+}
+
+
+?>
+
+
+
+
