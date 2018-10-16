@@ -22,7 +22,7 @@
 
 
 
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC";
 
         $select_posts = mysqli_query($connection, $query);
 
@@ -97,6 +97,13 @@ if(isset($_GET['delete'])) {
     $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
     
     $delete_post_query_result = mysqli_query($connection, $query);
+    
+    
+    $query = "DELETE FROM comments WHERE comment_post_id = {$the_post_id}";
+    
+    $delete_post_comments = mysqli_query($connection, $query);
+    
+    
     
     header("Location: posts.php");
     
