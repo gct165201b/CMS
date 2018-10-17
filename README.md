@@ -9,9 +9,9 @@ This is a CMS (Content Management System) Project From SCRATCH.This System Opera
 Clone the project or download it.
 
 ### Prerequisites
--> A Little bit of front-end knowledge.
--> To build/contibute to this system, one must have vary basic knowledge of php and should know how to do CRUD using databases.
--> XAMPP Server with phpMyAdmin (MySQL Database).
+ A Little bit of front-end knowledge.
+ To build/contibute to this system, one must have vary basic knowledge of php and should know how to do CRUD using databases.
+ XAMPP Server with phpMyAdmin (MySQL Database).
 ```
 Give examples
 ```
