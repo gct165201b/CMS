@@ -61,6 +61,6 @@ localhost/cms
 
 ## Authors
 
-* **Umar Naeem** - *Initial work* - [PurpleBooth](https://github.com/gct165201b)
+* **Umar Naeem**
 
 
