@@ -13,7 +13,13 @@ Clone the project or download it.
  To build/contibute to this system, one must have vary basic knowledge of php and should know how to do CRUD using databases.
  XAMPP Server with phpMyAdmin (MySQL Database).
 ```
-Give examples
+Read Records From Database.
+UPDATE Records
+DELETE Records
+CREATE Records
+
+Change the front end based upon the data pulled from database for dynamic web programming.
+
 ```
 
 ### Installing
