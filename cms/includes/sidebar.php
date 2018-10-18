@@ -26,6 +26,8 @@
         ?>
 
 
+<!--        SEARCH FORM-->
+
 
         <h4>Blog Search</h4>
         <form action="search.php" method="post">
@@ -38,8 +40,40 @@
                 </span>
             </div>
         </form>
-        <!-- Search form -->
-        <!-- /.input-group -->
+    
+       
+       
+<!--       LOGIN FORM-->
+        
+        
+        
+        
+        <h4>Login</h4>
+        <form action="includes/login.php" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Username">
+<!--
+                <span class="input-group-btn">
+                    
+                </span>
+-->
+            </div>
+            
+            
+            <div class="input-group">
+                <input type="password" name="user_password" class="form-control" placeholder="Password">
+                <span class="input-group-btn">
+                    <button type="submit" name="login" class="btn btn-primary">Login</button>
+                </span>
+            </div>
+            
+        </form>
+        
+        
+        
+        
+        
+        
     </div>
 
 
