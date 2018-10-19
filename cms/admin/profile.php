@@ -16,6 +16,78 @@
             $user_email = $row['user_email'];
             $user_image = $row['user_image'];
             $user_role_id = $row['user_role'];
+            $user_role_title = $row['role_title'];
+            
+            
+        }
+        
+        
+        
+        
+        
+        // UPDATE QUERY OR OPERATIONS
+    if(isset($_POST['update_profile'])) {
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname = $_POST['user_lastname'];
+        $user_email = $_POST['user_email'];
+        $username = $_POST['username'];
+        
+        
+        
+        $user_image = $_FILES['user_image']['name'];
+        $user_image_temp = $_FILES['user_image']['tmp_name'];
+        
+        
+        
+        $user_password = $_POST['user_password'];
+        
+        
+        
+        
+        // UPLOAD FILE
+        
+        move_uploaded_file($user_image_temp, "../images/$user_image");
+        
+        // IF USER DOES NOT SELECT THE NEW IMAGE THAN THE OLD IMAGE FROM DATABASE WILL BE USED.
+        if(empty($user_image)) {
+            $query = "SELECT user_image FROM users WHERE user_id = {$_SESSION['user_id']}";
+            
+            $select_user_image = mysqli_query($connection, $query);
+            
+            if($row = mysqli_fetch_assoc($select_user_image)) {
+                $user_image = $row['user_image'];
+            }
+        }
+        
+        
+        
+        $user_id = $_SESSION['user_id'];
+        
+        // CREATE QUERY TO UPDATE RECORD IN THE DATABASE.
+        
+        $query = "UPDATE users SET ";
+        $query .= "username='$username', ";
+        $query .= "user_password='$user_password', ";
+        $query .= "user_firstname='$user_firstname', ";
+        $query .= "user_lastname='$user_lastname', ";
+        $query .= "user_email='$user_email', ";
+        $query .= "user_image='$user_image', ";
+        $query .= "user_date=now() ";
+        $query .= "WHERE user_id = $user_id";
+        
+        $user_id = null;
+        // UPDATE QUERY 
+        
+        $update_user_query_result = mysqli_query($connection, $query);
+        
+        
+        confirmQuery($update_user_query_result);
+        
+        
+//        confirmQuery($update_post_query_result);
+        
+    }
+        
             
        
 ?>
@@ -121,26 +193,15 @@
           
           
               
-           <label for="title">New Role</label>
+           <label for="title">Role</label>
            
            
            <select name="user_role" id="" class="form-control">
                
-               <?php
                
-               $query = "SELECT * FROM roles";
-               $select_roles = mysqli_query($connection, $query);
-               confirmQuery($select_roles);
-               
-               
-               while($row = mysqli_fetch_assoc($select_roles)) {
-                   $role_id = $row['role_id'];
-                   $role_title = $row['role_title'];
                    
-                   echo "<option value='{$role_id}'>{$role_title}</option>";
-               }
+                   <option value="<?php $user_role_id; ?>"><?php echo $user_role_title; ?></option>
                
-               ?>
                
            </select>
            
@@ -164,7 +225,7 @@
        
        <div class="form-group">
            
-           <input type="submit" class="btn btn-primary" name="update_user" value="Update User">
+           <input type="submit" class="btn btn-primary" name="update_profile" value="Update Profile">
        </div>
        
    </form>
@@ -172,7 +233,7 @@
 
 <?php
 
-        }}
+        }
             
 ?>
                    
