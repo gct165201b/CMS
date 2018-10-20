@@ -38,6 +38,19 @@ if(!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'Admin') {
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,6 +61,9 @@ if(!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'Admin') {
     
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+    
 
 </head>
 
