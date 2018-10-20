@@ -211,6 +211,42 @@
                    
                    
 <!--                   CHART SCRIPT     -->
+                 
+                 
+                 
+                 
+                 
+                 
+<?php
+
+                    $query = "SELECT COUNT(post_id) AS draft_count FROM posts WHERE post_status='draft'";
+                    $select_draft_post_count_query = mysqli_query($connection, $query);
+                    if($row = mysqli_fetch_assoc($select_draft_post_count_query)) {
+                        $post_draft_count = $row['draft_count'];
+                    }
+                   
+                   
+                   
+                   
+                    $query = "SELECT COUNT(comment_id) AS comment_count FROM comments WHERE comment_status='unapproved'";
+                    $select_ua_post_count_query = mysqli_query($connection, $query);
+                    if($row = mysqli_fetch_assoc($select_ua_post_count_query)) {
+                        $comment_ua_count = $row['comment_count'];
+                    }
+                   
+                   
+                   
+                    $query = "SELECT COUNT(user_id) AS user_count FROM users WHERE user_role != (SELECT role_id FROM roles WHERE role_title = 'Admin')";
+                    $select_sub_users_count_query = mysqli_query($connection, $query);
+                    if($row = mysqli_fetch_assoc($select_sub_users_count_query)) {
+                        $subs_user_count = $row['user_count'];
+                    }
+
+?>
+                 
+                 
+                 
+                 
                   
                   
                   
@@ -231,11 +267,11 @@
         <?php
         
         
-        $element_text = ['Active Posts', 'Users', 'Comments' , 'Categories'];
-        $element_counts = [$post_count, $user_count, $comment_count, $cat_count];
+        $element_text = ['Active Posts','Draft Posts', 'Users','Subscibers', 'Comments','Un-Approved Comments' , 'Categories'];
+        $element_counts = [$post_count, $post_draft_count, $user_count, $subs_user_count, $comment_count, $comment_ua_count, $cat_count];
         
         
-        for($i = 0 ; $i < 4 ; $i++) {
+        for($i = 0 ; $i < 7 ; $i++) {
             echo "['{$element_text[$i]}', {$element_counts[$i]}],";
         }
         
