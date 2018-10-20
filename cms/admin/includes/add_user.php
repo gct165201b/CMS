@@ -36,6 +36,42 @@ if(isset($_POST['create_user'])) {
 
 
 ?>
+  
+  
+<!--
+  <div class="text-center">
+	 Button HTML (to Trigger Modal) 
+	<a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
+</div>
+-->
+  
+  
+  
+  
+  <div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+<!--
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>				
+-->
+				<h4 class="modal-title">Success</h4>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center">User is added.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+  
+  
    
    
    
@@ -127,8 +163,8 @@ if(isset($_POST['create_user'])) {
        
        
        <div class="form-group">
-           
-           <input type="submit" class="btn btn-primary" name="create_user" value="Add User">
+           <a href="#myModal" class="trigger-btn" data-toggle="modal">
+           <input type="submit" class="btn btn-primary" name="create_user" value="Add User"></a>
        </div>
        
    </form>
